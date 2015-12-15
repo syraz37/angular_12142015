@@ -36,10 +36,10 @@
 			},
 			delete: function (widgetId) {
 				var existingWidget =widgets.filter(function (widget) {
-					return widget.id == widgetId;
+					return widget.id === widgetId;
 				})[0];
 
-				var existingWidgetIndex = widget.indexOf(existingWidget);
+				var existingWidgetIndex = widgets.indexOf(existingWidget);
 				widgets.splice(existingWidgetIndex, 1);
 				return existingWidget;
 

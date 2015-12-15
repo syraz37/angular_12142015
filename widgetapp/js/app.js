@@ -39,6 +39,8 @@
 
 
 		$templateCache.put("tpls/view.html", `
+
+
 <div>
 	<h1 ng-bind="widget.name"></h1>
 
@@ -53,6 +55,8 @@
 </div>
 <button ui-sref="edit({widgetId: widget.id})">Edit</button>
 <button ui-sref="home">Return to List</button>
+
+
 		`);
 
 
@@ -60,16 +64,16 @@
 
 		$templateCache.put("tpls/edit.html", `
 
-<form>
-	<label>Name: <input ng-model="widget.name" /></label>
-	<label>Description: <input ng-model="widget.description" /></label>
-	<label>Color: <input ng-model="widget.color" /></label>
-	<label>Size: <input ng-model="widget.size" /></label>
-	<label>Quantity: <input ng-model="widget.quantity" /></label>
-	
-	<button>Save</button>
-	<button ui-sref="home">Return to List</button>
-	<button ui-sref="home">Return to List</button>
+<form name="widgetForm">
+	<label>Name: <input ng-model="widget.name" name="widgetName" required /><span class="error" ng-show="widgetForm.widgetName.$invalid && widgetForm.widgetName.$touched"> Please enter name.</span></label>
+	<label>Description: <input ng-model="widget.description" name="widgetDescription" required /><span class="error" ng-show="widgetForm.widgetDescription.$invalid && widgetForm.widgetDescription.$touched"> Please enter description.</span></label>
+	<label>Color: <input ng-model="widget.color" name="widgetColor" required /><span class="error" ng-show="widgetForm.widgetColor.$invalid && widgetForm.widgetColor.$touched"> Please enter color.</span></label>
+	<label>Size: <input ng-model="widget.size" name="widgetSize" required /><span class="error" ng-show="widgetForm.widgetSize.$invalid && widgetForm.widgetSize.$touched"> Please enter size.</span></label>
+	<label>Quantity: <input ng-model="widget.quantity" type="number" name="widgetQuantity" required /><span class="error" ng-show="widgetForm.widgetQuantity.$invalid && widgetForm.widgetQuantity.$touched"> Please enter quantity.</span></label>
+
+	<button type="button" ng-click="saveWidget()" ng-disabled="widgetForm.$invalid">Save</button>
+	<button type="button" ng-if="widget.id" ng-click="deleteWidget(widget.id)">Delete</button>
+	<button type="button" ui-sref="home">Return to List</button>
 </form>
 
 		`);
