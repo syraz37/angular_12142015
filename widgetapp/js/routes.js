@@ -17,6 +17,11 @@
 				controller: "ViewCtrl",
 				templateUrl: "tpls/view.html"
 			})
+			.state("edit", {
+				url: "/widgets/edit/:widgetId",
+				controller: "EditCtrl",
+				templateUrl: "tpls/edit.html"
+			})
 
 	}
 

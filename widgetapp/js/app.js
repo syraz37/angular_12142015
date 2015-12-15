@@ -25,7 +25,7 @@
 			<td ng-bind="widget.size"></td>
 			<td ng-bind="widget.quantity"></td>
 			<td>
-				<button ui-sref="view">Edit</button>
+				<button ui-sref="edit({widgetId: widget.id})">Edit</button>
 				<button ui-sref="view({widgetId: widget.id})">View</button>
 				<button ng-click="deleteWidget(widget.id)">Delete</button>
 			</td>
@@ -33,6 +33,10 @@
 	</tbody>
 </table>
 		`);
+
+
+
+
 
 		$templateCache.put("tpls/view.html", `
 <div>
@@ -47,8 +51,27 @@
 	<label>Quantity: 
 	<span ng-bind="widget.quantity"></span></label>
 </div>
-<button>Edit</button>
+<button ui-sref="edit({widgetId: widget.id})">Edit</button>
 <button ui-sref="home">Return to List</button>
+		`);
+
+
+
+
+		$templateCache.put("tpls/edit.html", `
+
+<form>
+	<label>Name: <input ng-model="widget.name" /></label>
+	<label>Description: <input ng-model="widget.description" /></label>
+	<label>Color: <input ng-model="widget.color" /></label>
+	<label>Size: <input ng-model="widget.size" /></label>
+	<label>Quantity: <input ng-model="widget.quantity" /></label>
+	
+	<button>Save</button>
+	<button ui-sref="home">Return to List</button>
+	<button ui-sref="home">Return to List</button>
+</form>
+
 		`);
 	})
 
