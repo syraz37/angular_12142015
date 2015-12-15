@@ -12,6 +12,11 @@
 				controller: "HomeCtrl",
 				templateUrl: "tpls/home.html"
 			})
+			.state("create", {
+				url: "/widgets/create",
+				controller: "EditCtrl",
+				templateUrl: "tpls/edit.html"
+			})
 			.state("view", {
 				url: "/widgets/:widgetId",
 				controller: "ViewCtrl",

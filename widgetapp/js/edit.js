@@ -1,9 +1,15 @@
 (function (angular) {
 
-	ctrl.$inject = ['$scope', 'widgets', '$stateParams', '$state'];
+	ctrl.$inject = ['$scope', 'widgets', 'colors', '$stateParams', '$state'];
 
-	function ctrl ($scope, widgets, $stateParams, $state) {
-		$scope.widget = widgets.get(parseInt($stateParams.widgetId, 10));
+	function ctrl ($scope, widgets, colors, $stateParams, $state) {
+		if($stateParams.widgetId) {
+			$scope.widget = widgets.get(parseInt($stateParams.widgetId, 10));
+		} else {
+			$scope.widget = {};
+		}
+
+		$scope.colors = colors.getAll();
 
 		$scope.saveWidget = function () {
 			if($scope.widget.id) {

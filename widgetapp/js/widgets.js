@@ -5,8 +5,8 @@
 			lastWidgetId = 3,
 			widgets = [
 				{id: 1, name: "Widget 1", description: "The first widget.", color: "blue", size: "large", quantity: 3},
-				{id: 2, name: "Widget 2", description: "The second widget.", color: "red", size: "medium", quantity: 1},
-				{id: 3, name: "Widget 3", description: "The third widget.", color: "orange", size: "small", quantity: 2}
+				{id: 2, name: "Widget 2", description: "The second widget.", color: "black", size: "medium", quantity: 1},
+				{id: 3, name: "Widget 3", description: "The third widget.", color: "aqua", size: "small", quantity: 2}
 			];
 
 		return {
