@@ -6,11 +6,17 @@
 		
 		$urlRouterProvider.otherwise("/");
 
-		$stateProvider.state("home", {
-			url: "/",
-			controller: "HomeCtrl",
-			templateUrl: "tpls/home.html"
-		})
+		$stateProvider
+			.state("home", {
+				url: "/",
+				controller: "HomeCtrl",
+				templateUrl: "tpls/home.html"
+			})
+			.state("view", {
+				url: "/widgets/:widgetId",
+				controller: "ViewCtrl",
+				templateUrl: "tpls/view.html"
+			})
 
 	}
 
