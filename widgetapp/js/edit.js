@@ -4,7 +4,7 @@
 
 	function ctrl ($scope, widgets, colors, $stateParams, $state) {
 		if($stateParams.widgetId) {
-			$scope.widget = widgets.get(parseInt($stateParams.widgetId, 10));
+			$scope.widget = angular.extend({}, widgets.get(parseInt($stateParams.widgetId, 10)));
 		} else {
 			$scope.widget = {};
 		}

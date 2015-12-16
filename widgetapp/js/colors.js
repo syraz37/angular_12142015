@@ -9,6 +9,7 @@
 				{code: "navy", name: "Navy", category: "Budget"},
 				{code: "green", name: "Green", category: "Standard"},
 				{code: "olive", name: "Olive", category: "Premium"},
+				{code: "teal", name: "Teal", category: "Premium"},
 			];
 
 		return {

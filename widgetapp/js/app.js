@@ -2,7 +2,8 @@
 
 	"use strict";
 
-	angular.module('WidgetApp.Services', []);
+	angular.module('WidgetApp.Constants', []);
+	angular.module('WidgetApp.Services', ['WidgetApp.Constants']);
 	angular.module('WidgetApp.Filters', ['WidgetApp.Services']);
 	angular.module('WidgetApp.Controllers', ['WidgetApp.Services']);
 
@@ -68,13 +69,24 @@
 
 <form name="widgetForm">
 	<label>Name: <input ng-model="widget.name" name="widgetName" required /><span class="error" ng-show="widgetForm.widgetName.$invalid && widgetForm.widgetName.$touched"> Please enter name.</span></label>
-	<label>Description: <input ng-model="widget.description" name="widgetDescription" required /><span class="error" ng-show="widgetForm.widgetDescription.$invalid && widgetForm.widgetDescription.$touched"> Please enter description.</span></label>
+	<label>Description: <textarea ng-model="widget.description" name="widgetDescription" rows="5" cols="40" required ></textarea>
+	<span class="error" ng-show="widgetForm.widgetDescription.$invalid && widgetForm.widgetDescription.$touched"> Please enter description.</span></label>
+	
 	<label>Color: 
-	<select ng-model="widget.color" name="widgetColor" required ng-options="color.code as color.name group by color.category for color in colors"/>
-		<option value="">Select One</option>
-	</select>
-	<span class="error" ng-show="widgetForm.widgetColor.$invalid && widgetForm.widgetColor.$touched"> Please select color.</span></label>
-	<label>Size: <input ng-model="widget.size" name="widgetSize" required /><span class="error" ng-show="widgetForm.widgetSize.$invalid && widgetForm.widgetSize.$touched"> Please enter size.</span></label>
+		<select ng-model="widget.color" name="widgetColor" required ng-options="color.code as color.name group by color.category for color in colors"/>
+			<option value="">Select One</option>
+		</select>
+		<span class="error" ng-show="widgetForm.widgetColor.$invalid && widgetForm.widgetColor.$touched"> Please select color.</span>
+	</label>
+
+	<fieldset>
+		<legend>Size:</legend>
+		<label class="normal">Small: <input name="WidgetSize" ng-model="widget.size" type="radio" value="small" /></label>
+		<label class="normal">Medium: <input name="WidgetSize" ng-model="widget.size" type="radio" value="medium" /></label>
+		<label class="normal">Large: <input name="WidgetSize" ng-model="widget.size" type="radio" value="large" /></label>
+			<label class="normal"><span class="error" ng-show="widgetForm.widgetSize.$invalid && widgetForm.widgetSize.$touched"> Please enter size.</span></label>
+	</fieldset>
+		
 	<label>Quantity: <input ng-model="widget.quantity" type="number" name="widgetQuantity" required /><span class="error" ng-show="widgetForm.widgetQuantity.$invalid && widgetForm.widgetQuantity.$touched"> Please enter quantity.</span></label>
 
 	<button type="button" ng-click="saveWidget()" ng-disabled="widgetForm.$invalid">Save</button>
