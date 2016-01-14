@@ -8,12 +8,6 @@
 			$scope.widgets = results.data;
 		});
 
-		$scope.deleteWidget = function (widgetId) {
-			if(confirm("Are you sure you want to delete the widget?")) {
-				widgets.delete(widgetId);
-			};
-		}
-
 	}
 
 	angular.module("WidgetApp.Controllers")

@@ -3,11 +3,12 @@
 	"use strict";
 
 	angular.module('WidgetApp.Constants', []);
+	angular.module('WidgetApp.Directives', []);
 	angular.module('WidgetApp.Services', ['WidgetApp.Constants']);
 	angular.module('WidgetApp.Filters', ['WidgetApp.Services']);
 	angular.module('WidgetApp.Controllers', ['WidgetApp.Services']);
 
-	angular.module('WidgetApp', ['ui.router', 'WidgetApp.Controllers', 'WidgetApp.Filters'])
+	angular.module('WidgetApp', ['ui.router', 'WidgetApp.Controllers', 'WidgetApp.Filters', 'WidgetApp.Directives'])
 	.run(function ($templateCache) {
 		$templateCache.put("tpls/home.html", `
 <table class="table">
@@ -27,9 +28,8 @@
 			<td ng-bind="widget.size"></td>
 			<td ng-bind="widget.quantity"></td>
 			<td>
-				<button ui-sref="edit({widgetId: widget.id})">Edit</button>
-				<button ui-sref="view({widgetId: widget.id})">View</button>
-				<button ng-click="deleteWidget(widget.id)">Delete</button>
+				<button ui-sref="edit({widgetId: widget._id})">Edit</button>
+				<button ui-sref="view({widgetId: widget._id})">View</button>
 			</td>
 		</tr>
 	</tbody>
@@ -56,7 +56,7 @@
 	<label>Quantity: 
 	<span ng-bind="widget.quantity"></span></label>
 </div>
-<button ui-sref="edit({widgetId: widget.id})">Edit</button>
+<button ui-sref="edit({widgetId: widget._id})">Edit</button>
 <button ui-sref="home">Return to List</button>
 
 
@@ -68,7 +68,12 @@
 		$templateCache.put("tpls/edit.html", `
 
 <form name="widgetForm">
-	<label>Name: <input ng-model="widget.name" name="widgetName" required /><span class="error" ng-show="widgetForm.widgetName.$invalid && widgetForm.widgetName.$touched"> Please enter name.</span></label>
+	<label>Name: <input ng-model="widget.name" name="widgetName" required minimum="5" />
+
+		<span class="error" ng-show="widgetForm.widgetName.$error.required && widgetForm.widgetName.$touched"> Please enter name.</span>
+		<span class="error" ng-show="widgetForm.widgetName.$error.minimum && widgetForm.widgetName.$touched"> Please enter 5 character minimum.</span>
+
+	</label>
 	<label>Description: <textarea ng-model="widget.description" name="widgetDescription" rows="5" cols="40" required ></textarea>
 	<span class="error" ng-show="widgetForm.widgetDescription.$invalid && widgetForm.widgetDescription.$touched"> Please enter description.</span></label>
 	
@@ -90,7 +95,7 @@
 	<label>Quantity: <input ng-model="widget.quantity" type="number" name="widgetQuantity" required /><span class="error" ng-show="widgetForm.widgetQuantity.$invalid && widgetForm.widgetQuantity.$touched"> Please enter quantity.</span></label>
 
 	<button type="button" ng-click="saveWidget()" ng-disabled="widgetForm.$invalid">Save</button>
-	<button type="button" ng-if="widget.id" ng-click="deleteWidget(widget.id)">Delete</button>
+	<button type="button" ng-if="widget._id" ng-click="deleteWidget(widget._id)">Delete</button>
 	<button type="button" ui-sref="home">Return to List</button>
 </form>
 
